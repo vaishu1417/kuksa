@@ -5,3 +5,18 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/vaishu1417/kuksa.git
 git push -u origin main
+ test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install dependencies
+        run: |
+          cargo install cargo-tarpaulin
+      - name: Show toolchain information
+        working-directory: ${{github.workspace}}
+        run: |
+          rustup toolchain list
+          cargo --version
